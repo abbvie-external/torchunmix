@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Hagendorn"
+  given-names: "Erik"
+  orcid: "https://orcid.org/0000-0001-6011-9394"
+title: "TorchUnmix"
+version: 0.1
+date-released: 2022-9-30
+url: "https://github.com/abbvie-external/torchunmix"
