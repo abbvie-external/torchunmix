@@ -52,3 +52,9 @@ def stains_to_rgb(stains: torch.Tensor, conv_matrix: torch.Tensor) -> torch.Tens
     log_rgb = -(stains * -torch.log(_adjust(stains))) @ conv_matrix
     rgb = torch.exp(log_rgb)
     return torch.clip(rgb, 0, 1).permute(0, 3, 1, 2)
+
+
+def stains_to_stain(stains: torch.Tensor, index: int) -> torch.Tensor:
+    stain_isolated = torch.zeros_like(stains, device=stains.device)
+    stain_isolated[0, index, :, :] = stains[0, index, :, :]
+    return stain_isolated
