@@ -1,12 +1,9 @@
 from ..colorspace import rgb_to_od, od_to_hsd
+from ..exception import TorchUnmixException
 
 from typing import Tuple, Union, Optional
 from kmeans_pytorch import kmeans
 import torch
-
-
-class UnmixException(Exception):
-    pass
 
 
 def polar_sort(clusters: Tuple[torch.Tensor, torch.Tensor]) -> Tuple[torch.Tensor, torch.Tensor]:
@@ -69,7 +66,7 @@ def unmix_batch(rgb: torch.Tensor,
     hsd = od_to_hsd(rgb_to_od(rgb))
     hsd, hsd_noise = threshold_od(hsd, threshold)
     if hsd.shape[1] == 0:
-        raise UnmixException("Unable to process image with no relevant pixel data after thresholding")
+        raise TorchUnmixException("Unable to process image with no relevant pixel data after thresholding")
     clusters = cluster_hsd(hsd, **kwargs)
     return clusters, hsd, hsd_noise
 

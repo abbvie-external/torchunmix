@@ -1,0 +1,2 @@
+class TorchUnmixException(Exception):
+    pass
